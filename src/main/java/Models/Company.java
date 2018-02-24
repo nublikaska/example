@@ -2,8 +2,9 @@ package Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import javafx.beans.Observable;
 
-public class Company extends Model{
+public class Company extends Model {
 
     @SerializedName("title")
     @Expose

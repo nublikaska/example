@@ -1,12 +1,14 @@
 import Models.Career;
 import Models.Company;
 import Models.Credential;
+import Models.test.Question;
 import Models.test.Test;
+import Models.test.shared.SharedTest;
+import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.*;
+import javax.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -27,8 +29,32 @@ public interface ServiceApi {
 
     //test
     @POST("company/{loginCompany}/career/{id}/test")
-    Call<Test> addTest(@Path("loginCompany") String loginCompany, @Path("id") Long id, @Body Test test);
+    Call<Test> addTest(@Path("id") Long id, @Body Test test);
 
     @GET("company/{loginCompany}/career/{idCareer}/test")
     Call<List<Test>> getAllTestByCareer(@Path("idCareer") Long id);
+
+    //question
+    @POST("company/{title}/career/{careerId}/test/{testId}/questions")
+    Call<Question> addQuestion(@Path("testId") Long testId, @Body Question question);
+
+    @GET("company/{title}/career/{careerId}/test/{testId}/questions")
+    Call<List<Question>> getAllQuestionByTestId(@Path("testId") Long testId);
+
+    @DELETE("company/{title}/career/{careerId}/test/{testId}/questions")
+    Call<ResponseBody> deleteQuestion(@Body Long questionId);
+
+    //SharedTest
+    @POST("company/{title}/career/{id}/test/{testId}/shared/")
+    Call<SharedTest> addSharedTest(@Path("testId") Long testId, @Body SharedTest sharedTest);
+
+    @POST("company/{title}/career/{id}/test/{testId}/shared/")
+    Call<List<SharedTest>> getAllShareTestByTestId(@Path("testId") Long testId);
+
+    @GET("company/{title}/career/{id}/test/{testId}/shared/{sharedId}")
+    Call<SharedTest> getSharedTest(@Path("sharedId") Long sharedId);
+
+    //Authentication
+    @POST("authentication")
+    Call<Response> authenticateCompany(@Body Credential credential);
 }
