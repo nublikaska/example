@@ -29,6 +29,6 @@ public interface ServiceApi {
     @POST("company/{loginCompany}/career/{id}/test")
     Call<Test> addTest(@Path("loginCompany") String loginCompany, @Path("id") Long id, @Body Test test);
 
-    @GET("company/{title}/career/{id}/test")
-    Call<List<Test>> getAllTestByCareer(@Path("id") Long id);
+    @GET("company/{loginCompany}/career/{idCareer}/test")
+    Call<List<Test>> getAllTestByCareer(@Path("idCareer") Long id);
 }

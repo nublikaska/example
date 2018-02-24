@@ -3,7 +3,7 @@ package Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Credential extends Model{
+public class Credential {
     @SerializedName("login")
     @Expose
     private String login;

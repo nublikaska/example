@@ -17,6 +17,10 @@ public class Company extends Model{
     @Expose
     private String password;
 
+    @SerializedName("token")
+    @Expose
+    private String token;
+
     public Company(String name, String login, String password) {
         this.name = name;
         this.login = login;

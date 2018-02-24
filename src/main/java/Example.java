@@ -15,19 +15,30 @@ public class Example {
 
         Example example = new Example();
 
-        Company company = new Company("title8", "login8", "password8");
-        Credential credential = new Credential("login8", "password8");
+        Company company = new Company("title1", "login1", "password1");
+        Credential credential = new Credential("login1", "password1");
         Career career = new Career(company, "career2");
-        Test test = new Test(career, "test10");
+        Test test = new Test(career, "test2");
 
 
 
-        //System.out.println(example.addCompany(company).getLogin());
-        //System.out.println(example.getCompany("login8", credential).getLogin());//не работает
-        //System.out.println(example.addCareer(career.getCompany().getLogin(), career).getTitle());
-        //System.out.println(example.getAllCareerByCompany("login7").get(6).getTitle());
-        //System.out.println(example.addTest("login7", 0L, test).getId());
-        //System.out.println(example.getAllTestByCareer(0L).get(6).getTitle());//не работает
+//        System.out.println(example.addCompany(company).getLogin());
+//        System.out.println(example.getCompany("login1", credential).getLogin());
+//        System.out.println(example.addCareer("login1", career).getTitle());
+
+//        List<Career> list = example.getAllCareerByCompany("login1");
+//        for (int i=0; i < list.size(); i++)
+//        {
+//            System.out.println(list.get(i).getTitle());
+//        }
+
+//        System.out.println(example.addTest("login1", 1L, test).getId());
+
+        List<Test> list  = example.getAllTestByCareer(1L);
+        for (int i=0; i < list.size(); i++)
+        {
+            System.out.println(list.get(i).getTitle());
+        }
 
     }
 
@@ -82,9 +93,9 @@ public class Example {
         return response.body();
     }
 
-    public List<Test> getAllTestByCareer(Long id) {
+    public List<Test> getAllTestByCareer(Long idCareer) {
         try {
-            Response<List<Test>> response = serviceApi.getAllTestByCareer(id).execute();
+            Response<List<Test>> response = serviceApi.getAllTestByCareer(idCareer).execute();
             return response.body();
         } catch (IOException e) {
             e.printStackTrace();
